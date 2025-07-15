@@ -1,62 +1,67 @@
-#bitacora/core.py
 
-import sys
+#Clases 
 
-print ("\n Acta Médica #001 – Respiración Asistida del Sistema \n")
-
-def mostrar_menu():
-    """Muestra el menu"principal de opciones."""
-    while True:
-        print("\n=== Menú ===\n")
-        for i, (opcion, _) in enumerate(acciones, 1):
-            print(f"{i}. {opcion}")
-        print("\n")
-        try:
-            eleccion = int(input("Seleccione una opción: "))
-            accion = menu.get(eleccion)
-            if accion:
-                accion()
-            else:
-                print("Opción no válida. Por favor, intente de nuevo.")
-        except ValueError:
-            print("Por favor, ingrese un número válido.")
+class Equipo:
+    def __init__(self, id_equipo, tipo, marca, modelo, estado, fecha):
+        self.id_equipo = id_equipo
+        self.tipo = tipo
+        self.marca = marca
+        self.modelo = modelo   
+        self.estado = estado
+        self.fecha = fecha
 
 
-def agregar_entrada():
-    """Agrega una nueva entrada a la bitácora."""
+    def cambiar_estado(self, nuevo_estado):
+        self.estado = nuevo_estado
+
+    def mostrar_informacion(self):
+        return f"ID: {self.id_equipo}, Nombre: {self.tipo} {self.marca} {self.modelo}, Estado: {self.estado}, Fecha: {self.fecha}"
     
+class Personal:
+    def __init__(self, id_personal, nombre, cargo, telefono):
+        self.id_personal = id_personal
+        self.nombre = nombre
+        self.cargo = cargo
+        self.telefono = telefono
+        self.reportes = []
 
-def editar_entrada():
-    """Edita una entrada existente en la bitácora."""
-    pass
+    def mostrar_informacion(self):
+        return f"ID: {self.id_personal}, Nombre: {self.nombre}, Cargo: {self.cargo}, Teléfono: {self.telefono}"
+    
+    def generar_reporte(self, equipo, tipo_accion, descripcion):
+        nuevo_reporte = Reporte(self, equipo, tipo_accion, descripcion)
+        self.reportes.append(nuevo_reporte)
+        return nuevo_reporte
+    
+    def consultar_reportes(self):
+        return self.reportes
+    
+class Reporte:
+    def __init__(self, personal, equipo, tipo_accion, descripcion):
+        self.personal = personal
+        self.equipo = equipo
+        self.tipo_accion = tipo_accion
+        self.descripcion = descripcion
 
-def listar_entradas():
-    """Muestra todas las entrAdas registradas."""
-    pass
+    def mostrar_informacion(self):
+        return f"Reporte por {self.personal.nombre} sobre {self.equipo.tipo} {self.equipo.marca} {self.equipo.modelo}: {self.tipo_accion} - {self.descripcion} - fecha: {self.equipo.fecha}"
+    
+class Bitacora:
+    def __init__(self):
+        self.reportes = []
 
-def exportar_entradas():
-    """Exporta las entradas a un archivo externo."""
-    pass
+    def buscar_por_tecnico(self, nombre):
+        return [r for r in self.reportes if r.personal.nombre == nombre]
 
-def salir():
-    """Finaliza el programa."""
-    print("Saliendo del programa...")
-    sys.exit()
+    def buscar_por_equipo(self, id_equipo):
+        return [r for r in self.reportes if r.equipo.id_equipo == id_equipo]
+    
+    def buscar_por_tipo_accion(self, tipo_accion):
+        return [r for r in self.reportes if r.tipo_accion == tipo_accion]
+    
+    def buscar_por_fecha(self, fecha):
+        return [r for r in self.reportes if r.equipo.fecha == fecha]
 
-acciones = [("Agregar Entrada", agregar_entrada),
-        ("Listar entradas", listar_entradas),
-        ("Editar entradas", editar_entrada),
-        ("Exportar entradas", exportar_entradas),
-        ("Salir", salir)] # Lista de opciones del menú
+    def listar_todos(self):
+        return self.reportes
 
-menu = {i: func for i, (_, func) in enumerate(acciones, 1)}
-
-equipos = []
-
-def main():
-    """Función principal que ejecuta el programa."""
-   
-    mostrar_menu()
-
-
-main()
