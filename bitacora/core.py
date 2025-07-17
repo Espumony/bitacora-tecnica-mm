@@ -1,4 +1,7 @@
 
+
+import json
+
 #Clases 
 
 class Equipo:
@@ -11,7 +14,7 @@ class Equipo:
         self.fecha = fecha
 
 
-    def cambiar_estado(self, nuevo_estado):
+    def cambiar_estado(self, nuevo_estado):   #Función para cambiar de estado del equipo, solo puede ser llamado por el personal autorizado
         self.estado = nuevo_estado
 
     def mostrar_informacion(self):
@@ -43,12 +46,39 @@ class Reporte:
         self.tipo_accion = tipo_accion
         self.descripcion = descripcion
 
-    def mostrar_informacion(self):
+    def informacion_de_reporte(self):
         return f"Reporte por {self.personal.nombre} sobre {self.equipo.tipo} {self.equipo.marca} {self.equipo.modelo}: {self.tipo_accion} - {self.descripcion} - fecha: {self.equipo.fecha}"
     
 class Bitacora:
     def __init__(self):
         self.reportes = []
+        self.equipos = []
+        self.personal = []
+
+    #fUNCIONES PARA AGREGAR EQUIPO Y PERSONAL
+    def guardar_en_json(self):
+        datos = {
+            "reportes": [r.informacion_de_reporte() for r in self.reportes],
+            "equipos": [vars(e) for e in self.equipos],
+            "personal": [vars(p) for p in self.personal]
+        }
+        with open('bitacora.json', 'w', encoding= 'utf-8') as archivo:
+            json.dump(datos, archivo, indent=4 , ensure_ascii=False)
+
+    def agregar_equipo(self, equipo):
+        self.equipos.append(equipo)
+        print(f"Equipo {equipo.tipo} agregado a la bitácora.")
+        self.guardar_en_json()
+
+    def agregar_personal(self, personal):
+        self.personal.append(personal)
+        print(f"Personal {personal.nombre} agregado a la bitácora.")
+        self.guardar_en_json()
+    
+    def agregar_reporte(self, reporte):
+        self.reportes.append(reporte)
+        print("Reporte agregado.")
+        self.guardar_en_json()
 
     def buscar_por_tecnico(self, nombre):
         return [r for r in self.reportes if r.personal.nombre == nombre]
@@ -63,5 +93,15 @@ class Bitacora:
         return [r for r in self.reportes if r.equipo.fecha == fecha]
 
     def listar_todos(self):
-        return self.reportes
+        print("Reportes:")
+        for r in self.reportes:
+            print("-", r.informacion_de_reporte())
+
+        print("\nEquipos:")
+        for e in self.equipos:
+            print("-", e.mostrar_informacion())
+
+        print("\nPersonal:")
+        for p in self.personal:
+            print("-", p.mostrar_informacion())
 

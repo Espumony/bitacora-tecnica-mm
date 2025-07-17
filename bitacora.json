@@ -1,0 +1,22 @@
+{
+    "reportes": [],
+    "equipos": [
+        {
+            "id_equipo": "1",
+            "tipo": "1",
+            "marca": "1",
+            "modelo": "1",
+            "estado": "1",
+            "fecha": "11"
+        }
+    ],
+    "personal": [
+        {
+            "id_personal": "1",
+            "nombre": "w",
+            "cargo": "s",
+            "telefono": "12",
+            "reportes": []
+        }
+    ]
+}
