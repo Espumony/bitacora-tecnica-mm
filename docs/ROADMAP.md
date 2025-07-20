@@ -35,10 +35,10 @@ Este rediseño busca mayor escalabilidad, mantenibilidad y claridad en la lógic
 
 ## 🔄 Pendientes futuros (para próximas semanas)
 
-- Persistencia de datos: guardar/leer desde archivo (JSON o CSV)
-- Interfaz de línea de comandos o menú de consola
-- Validaciones de datos (tipos de acción, formato de entrada)
-- Soporte para múltiples sedes/hospitales
+- Persistencia de datos: guardar/leer desde archivo (JSON o CSV) ✅
+- Interfaz de línea de comandos o menú de consola                
+- Validaciones de datos (tipos de acción, formato de entrada)   
+- Soporte para múltiples sedes/hospitales                       
 
 ---
 

@@ -1,0 +1,1 @@
+"""indica que bitacora/ es un módulo de Python."""
