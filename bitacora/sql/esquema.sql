@@ -46,9 +46,9 @@ CREATE TABLE IF NOT EXISTS estados_equipo (
 );
 
 -- Inserta algunos usuarios fijos. Estos serán los únicos válidos.
-INSERT OR IGNORE INTO usuarios (username, password)
-VALUES
-    ('admin', '1234'),
-    ('soporte', 'mmsoporte'),
-    ('doctorx', 'cura123');
+-- INSERT OR IGNORE INTO usuarios (username, password)
+-- VALUES
+--     ('admin', '1234'),
+--     ('soporte', 'mmsoporte'),
+--     ('doctorx', 'cura123');
 

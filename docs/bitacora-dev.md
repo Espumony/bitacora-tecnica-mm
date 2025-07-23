@@ -18,3 +18,6 @@
 -Cambié de nuevo el proyecto por completo, ahora guardo en una base de datos sqlite en lugar de archivos json.
 -Realicé la conexión y autenticación para utilizar la app.
 -Se rehizo desde cero la estructura del proyecto.
+
+## 2025-07-22
+- Creación de la tablas equipos, estados_equipos, reportes, tipos_mantenimiento y usuarios en esquemas.sql
