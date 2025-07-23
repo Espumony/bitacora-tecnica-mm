@@ -18,8 +18,8 @@ CREATE TABLE IF NOT EXISTS equipos (
 
 );
 
--- Tabla con tipos de mantenimiento (instalación, preventivo, correctivo, etc.)
-CREATE TABLE IF NOT EXISTS tipos_mantenimiento (
+-- Tabla con tipos de reporte (instalación, preventivo, correctivo, etc.)
+CREATE TABLE IF NOT EXISTS tipos_reporte (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nombre TEXT,
     codigo TEXT
@@ -33,10 +33,10 @@ CREATE TABLE IF NOT EXISTS reportes (
     descripcion TEXT,
     id_usuario INTEGER,
     id_equipo INTEGER,
-    id_tipo_mantenimiento INTEGER,
+    id_tipo_reporte INTEGER,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
     FOREIGN KEY (id_equipo) REFERENCES equipos(id),
-    FOREIGN KEY (id_tipo_mantenimiento) REFERENCES tipos_mantenimiento(id)
+    FOREIGN KEY (id_tipo_reporte) REFERENCES tipos_reporte(id)
 );
 
 -- Tabla de estados de los equipos
