@@ -1,7 +1,10 @@
 # Menú principal después de iniciar sesión
 
+from bitacora.models.reportes import Reporte
+from bitacora.sql.db import conectar
+
 def mostrar_menu_principal(usuario):
-    print(f"\n🩺 ¡Hola, {usuario.username}! Bienvenido a la bitácora de Medical Mecánica 💼\n")
+    print(f"\n🩺 ¡Hola, {usuario.nombre} ! Bienvenido a la bitácora de Medical Mecánica 💼\n")
     print("Selecciona una opción para continuar:\n")
     print("1. Generar un reporte 📑")
     print("2. Salir 👋")
@@ -12,8 +15,9 @@ def mostrar_menu_principal(usuario):
     try:
         opcion = int(opcion)
 
-        if opcion == "1":
-          pass # Esto mandará la función para agregar equipos desde la clase Equipo, agregar_equipo() es un método de la calse Equipo 
+        if opcion == 1:
+          Reporte.generar_reporte()
+           # Esto mandará la función para generar un reporte desde la clase reporte 
         elif opcion == 2:
             print("👋 ¡Hasta luego! Gracias por usar la bitácora de Medical Mecánica.")
             exit()  
